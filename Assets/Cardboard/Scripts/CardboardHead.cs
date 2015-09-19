@@ -13,7 +13,7 @@
 // limitations under the License.
 
 using UnityEngine;
-
+using test;
 /// @ingroup Scripts
 /// Attach this script to any game object that should match the user's head motion.
 /// By default, it continuously updates the local transform to Cardboard.HeadView.
@@ -70,6 +70,12 @@ public class CardboardHead : MonoBehaviour {
     }
   }
 
+	void Start(){
+		Debug.Log ("Starting server");
+		ServerClass server = new ServerClass ();
+		//server.StartServer();
+	}
+
   private bool updated;
 
   void Update() {
@@ -103,6 +109,7 @@ public class CardboardHead : MonoBehaviour {
 
     if (trackPosition) {
       Vector3 pos = Cardboard.SDK.HeadPose.Position;
+			//pos[2] = 1;
       if (target == null) {
         transform.localPosition = pos;
       } else {
